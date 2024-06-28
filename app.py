@@ -7,19 +7,22 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
-
-@app.route('/calculate', methods=['POST'])
-@cross_origin(origin='*',headers=['Content-Type'])
+# Configuración de CORS
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 def calculate_volume():
     data = request.json
     a = float(data['start'])
     b = float(data['end'])
     area_function = lambda x: eval(data['area'])  # Convertir la función A(x) a una función evaluable
     volume, error = quad(area_function, a, b)
-    response = flask.jsonify({'volume': round(volume, 2)})
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    response = jsonify({'volume': round(volume, 2)})
     return response
 
 def area_function(x):
