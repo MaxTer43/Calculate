@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 from scipy.integrate import quad
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 @app.route("/calculate", methods=['POST'])
-@cross_origin()  # Asegura que este endpoint permite solicitudes CORS
 def calculate_volume():
     data = request.get_json()
     a = float(data['start'])
