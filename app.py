@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
 import numpy as np
 from scipy.integrate import quad
+from starlette.middleware.cors import CORSMiddleware
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+cors = CORS(app)
 
 def area_function(x):
     # Aquí debes convertir la función A(x) recibida en una función evaluable
