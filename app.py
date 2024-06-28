@@ -13,7 +13,7 @@ def calculate_volume():
     b = float(data['end'])
     area_function = lambda x: eval(data['area'])  # Convertir la función A(x) a una función evaluable
     volume, error = quad(area_function, a, b)
-    return jsonify({'volume': round(volume, 2)}), 200
+    return jsonify({'volume': round(volume, 2)})
 
 if __name__ == '__main__':
     from waitress import serve
