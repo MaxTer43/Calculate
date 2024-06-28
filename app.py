@@ -14,7 +14,7 @@ def calculate_volume():
     area_function = lambda x: eval(data['area'])  # Convertir la función A(x) a una función evaluable
     volume, error = quad(area_function, a, b)
     response = jsonify({'volume': round(volume, 2)})
-    return response, {'Access-Control-Allow-Origin':'*',
+    return response, 200, {'Access-Control-Allow-Origin':'*',
                                 'Access-Control-Allow-Methods':'POST',
                                 'Access-Control-Allow-Headers':'content-type'}
 
