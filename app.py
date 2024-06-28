@@ -6,12 +6,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-cors = CORS(app)
-
-def area_function(x):
-    # Aquí debes convertir la función A(x) recibida en una función evaluable
-    return eval(request.json['area'])
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/calculate', methods=['POST'])
 def calculate_volume():
@@ -22,6 +17,9 @@ def calculate_volume():
     volume, error = quad(area_function, a, b)
     return jsonify({'volume': round(volume, 2)})
 
+def area_function(x):
+    # Aquí debes convertir la función A(x) recibida en una función evaluable
+    return eval(request.json['area'])
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
