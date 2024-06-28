@@ -3,11 +3,10 @@ from scipy.integrate import quad
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route("/calculate")
-@cross_origin()
 def calculate_volume():
     data = request.json
     a = float(data['start'])
