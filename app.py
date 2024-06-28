@@ -2,12 +2,12 @@ from flask import Flask, request, jsonify
 import numpy as np
 from scipy.integrate import quad
 from starlette.middleware.cors import CORSMiddleware
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
 cors = CORS(app)
-
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 def area_function(x):
     # Aquí debes convertir la función A(x) recibida en una función evaluable
@@ -15,6 +15,7 @@ def area_function(x):
 
 
 @app.route('/calculate', methods=['POST'])
+@cross_origin()
 def calculate_volume():
     data = request.json
     a = float(data['start'])
