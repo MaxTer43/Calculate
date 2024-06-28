@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, request, jsonify
 import numpy as np
 from scipy.integrate import quad
@@ -15,7 +16,9 @@ def calculate_volume():
     b = float(data['end'])
     area_function = lambda x: eval(data['area'])  # Convertir la función A(x) a una función evaluable
     volume, error = quad(area_function, a, b)
-    return jsonify({'volume': round(volume, 2)})
+    response = flask.jsonify({'volume': round(volume, 2)})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 def area_function(x):
     # Aquí debes convertir la función A(x) recibida en una función evaluable
