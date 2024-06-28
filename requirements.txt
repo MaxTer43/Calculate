@@ -3,3 +3,4 @@ Flask~=3.0.3
 scipy~=1.10.0-rc1
 starlette~=0.37.2
 Flask-CORS
+waitress~=3.0.0
