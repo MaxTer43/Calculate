@@ -7,7 +7,6 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 def area_function(x):
     # Aquí debes convertir la función A(x) recibida en una función evaluable
