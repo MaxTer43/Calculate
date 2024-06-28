@@ -14,7 +14,6 @@ def area_function(x):
 
 
 @app.route('/calculate', methods=['POST'])
-@cross_origin()
 def calculate_volume():
     data = request.json
     a = float(data['start'])
